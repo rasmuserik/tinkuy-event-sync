@@ -5,7 +5,8 @@ let main = (() => {
     } catch (e) {
       console.log('tinkuy_event_sync error: ' + e);
     }
-    setTimeout(main, 60000);
+    /* wait 3 minutes between syncs */
+    setTimeout(main, 3 * 60 * 1000);
   });
 
   return function main() {

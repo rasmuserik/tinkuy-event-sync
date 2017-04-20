@@ -13,7 +13,7 @@
   "main": "lib.js",
   "unpkg": "dist.js",
   "repository": "github:solsort/tinkuy-event-sync",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "http://tinkuy-event-sync.solsort.com",
   "dependencies": {
     "deep-equal": "^1.0.1",
