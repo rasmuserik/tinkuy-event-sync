@@ -1,26 +1,23 @@
 // # Synchronise events from tinkuy.dk to CouchDB
 //
-// The couchdb url to synchronise to should be includes in the url-hash, i.e. `http://tinkuy-event-sync.solsort.com/#https://user:passwd@couch.db/database` synchronises from/to couch.db/database.
+// The couchdb url to synchronise to should be includes in the url-hash, i.e. `http://tinkuy-event-sync.solsort.com/#https://user:passwd@couch.db/database` synchronises with `couch.db/database`.
 
 let PouchDB = require('pouchdb');
 let deepEqual = require('deep-equal');
 let db = new PouchDB('tinkuy_events');
+let remote = location.hash.slice(1);
 
+PouchDB.replicate(remote, 'tinkuy_events')
+  .then(main);
 
-if(!window.tinkuy_events_sync) {
-  PouchDB.replicate(location.hash.slice(1), 'tinkuy_events');
-  setTimeout(() => window.tinkuy_events_sync(), 5000);
-}
-
-window.tinkuy_events_sync = async () => {
+async function main() {
   try {
     await updateDB();
   } catch(e) {
     console.log('tinkuy_event_sync error: ' + e);
   }
-  setTimeout(() => window.tinkuy_events_sync(), 60000);
+  setTimeout(main, 60000);
 }
-
 
 async function updateDB() {
   console.log('tinkuy_event_sync');
@@ -46,7 +43,7 @@ async function updateDB() {
 
   console.log('tinkuy_event_sync replicate: ' + changed);
   if(changed) {
-    await PouchDB.replicate('tinkuy_events', location.hash.slice(1));
+    await PouchDB.replicate('tinkuy_events', remote);
   }
   console.log('tinkuy_event_sync done');
 }
