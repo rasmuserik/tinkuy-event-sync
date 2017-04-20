@@ -7,20 +7,16 @@ let updateDB = (() => {
     console.log('tinkuy_event_sync got data');
     let changed = 0;
     for (let event of events) {
-      let old;
+      let doc;
       try {
-        old = yield db.get(String(event.id));
-        for (let key in old) {
-          if (key.startsWith('_')) {
-            delete old[key];
-          }
-        }
+        doc = yield db.get(String(event.id));
       } catch (e) {
-        old = {};
+        doc = {};
       }
+      let newDoc = Object.assign({}, doc, event);
 
-      if (!deepEqual(event, old)) {
-        yield db.put(Object.assign({ _id: String(event.id) }, event));
+      if (!deepEqual(doc, newDoc)) {
+        yield db.put(newDoc);
         ++changed;
       }
     }
