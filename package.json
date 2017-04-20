@@ -1,5 +1,6 @@
 {
   "name": "tinkuy-event-sync",
+  "description": "Simple scripts to synchronise events at tinkuy.dk to couchdb database regularly",
   "scripts": {
     "release": "simple-javascript release",
     "dev": "simple-javascript dev",
@@ -12,7 +13,10 @@
   "main": "lib.js",
   "unpkg": "dist.js",
   "repository": "github:solsort/tinkuy-event-sync",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://tinkuy-event-sync.solsort.com",
-  "description": ""
+  "dependencies": {
+    "deep-equal": "^1.0.1",
+    "pouchdb": "^6.1.2"
+  }
 }

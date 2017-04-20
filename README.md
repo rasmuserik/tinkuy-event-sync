@@ -3,6 +3,6 @@
 		DO NOT EDIT 
 -->
 # tinkuy-event-sync
-
+Simple scripts to synchronise events at tinkuy.dk to couchdb database regularly
 
 ***See <http://tinkuy-event-sync.solsort.com> for details.***
