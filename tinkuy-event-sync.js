@@ -32,7 +32,7 @@ async function updateDB() {
     try {
       doc = await db.get(String(event.id));
     } catch(e) {
-      doc = {};
+      doc = {_id: event.id};
     }
     let newDoc = Object.assign({}, doc, event);
 
