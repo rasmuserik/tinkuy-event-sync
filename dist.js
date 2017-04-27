@@ -213,7 +213,7 @@ let updateDB = (() => {
       try {
         doc = yield db.get(String(event.id));
       } catch (e) {
-        doc = {};
+        doc = { _id: event.id };
       }
       let newDoc = Object.assign({}, doc, event);
 
